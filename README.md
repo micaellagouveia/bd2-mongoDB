@@ -34,7 +34,7 @@ Fizemos uma análise da velocidade de resposta do banco e obtivemos:
 
 ![resultado1](img/resultadoC1.png);
 
-2. **Livros publicados depois dos anos 2000 com nota de avaliação maior que 5**
+2. **Livros publicados depois dos anos 2000 com nota de avaliação menor que 5**
 
 Nesta consulta foi preciso fazer uma agregação entre as tabelas Ratings e Books. Para isso, usando a interface do MongoDB Compass, foi preciso criar uma pipeline de agregação. Essa pipeline foi feita na collection Ratings, fazendo sua agregação com Books e depois dando o match necessário para a busca.
 
