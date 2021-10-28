@@ -1,0 +1,13 @@
+{
+  "name": "mongoDB",
+  "version": "1.0.0",
+  "main": "import.js",
+  "repository": "git@github.com:micaellagouveia/bd2-mongoDB.git",
+  "author": "micaellagouveia <micaella2212@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fast-csv": "^4.3.6",
+    "fs": "^0.0.1-security",
+    "mongodb": "^4.1.3"
+  }
+}
