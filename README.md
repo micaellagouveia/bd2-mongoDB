@@ -13,7 +13,7 @@ A base de dados Book-Crossing foi a escolhida para ser utilizada no trabalho pr�
 Para acessar o Script de Popula da base em MySQL: **<https://drive.google.com/file/d/10_NIs5IBEx1CbR9UZMBxucT2d5qy1Ww0/view?usp=sharing>**
 
 ## Importação
-Para a importação da base de dados foi utilizada a interface do MongoDB, o MongoDB Compass. Foi criada um database com nome Book-Crossing, e depois foram criadas 3 collections, sendo elas book, rating e users. A importação é feita pela interface de forma bem intuitiva como na imagem abaixo:
+Para a importação da base de dados foi utilizada a interface do MongoDB, o MongoDB Compass. Foi criada um database com nome Book-Crossing, e depois foram criadas 3 collections, sendo elas Books, Ratings e Users. A importação é feita pela interface de forma bem intuitiva como na imagem abaixo:
 
 ![import](img/import.png)
 
@@ -37,6 +37,34 @@ Fizemos uma análise da velocidade de resposta do banco e obtivemos:
 2. **Livros publicados depois dos anos 2000 com nota de avaliação maior que 5**
 
 Nesta consulta foi preciso fazer uma agregação entre as tabelas Ratings e Books. Para isso, usando a interface do MongoDB Compass, foi preciso criar uma pipeline de agregação. Essa pipeline foi feita na collection Ratings, fazendo sua agregação com Books e depois dando o match necessário para a busca.
+
+```
+[
+  {
+    '$lookup': {
+      'from': 'books', 
+      'localField': 'ISBN', 
+      'foreignField': 'ISBN', 
+      'as': 'books_info'
+    }
+  }, {
+    '$match': {
+      '$and': [
+        {
+          'books_info.anoPublicacao': {
+            '$gte': 2000
+          }
+        }, {
+          'nota': {
+            '$lte': 5
+          }
+        }
+      ]
+    }
+  }
+]
+
+```
 
 ![consulta2](img/consulta2.png)
 
